@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #f1f3f6;
+      --text: #000;
+      --card-bg: white;
+      --nav-bg: white;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #fff;
+      --card-bg: #1e1e1e;
+      --nav-bg: #222;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .menu-icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 999;
+    }
+
+    .menu-dropdown div {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .menu-dropdown div:last-child {
+      border-bottom: none;
+    }
+
+    .profile {
+      margin-left: auto;
+    }
+
+    .balance-card {
+      background: #006aff;
+      color: white;
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-icon {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.5;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(200px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-300px); opacity: 0; }
+    }
+
+    .commission {
+      float: right;
+      background: green;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    .balance-card h2, .balance-card p {
+      margin: 0.3rem 0;
+    }
+
+    .balance-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin: 1rem;
+    }
+
+    .balance-buttons button {
+      flex: 1;
+      margin: 0 0.5rem;
+      padding: 0.8rem;
+      background: #e6f0ff;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .quick-access {
+      padding: 0 1rem;
+    }
+
+    .quick-access h3 {
+      margin-bottom: 1rem;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+
+    .quick-grid div {
+      background: var(--card-bg);
+      padding: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--nav-bg);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-bar div {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #006aff;
+    }
+
+    .toggle-dark {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #006aff;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-dark" onclick="toggleDarkMode()">☾</div>
+
+  <div class="top">
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2>Hi, Israel</h2>
+    <div class="profile">
+      <img src="https://img.icons8.com/ios-filled/24/user-male-circle.png"/>
+    </div>
+  </div>
+
+  <div class="menu-dropdown" id="menu">
+    <div onclick="alert('Logging out...')">Logout</div>
+  </div>
+
+  <div class="balance-card">
+    <img class="floating-icon" src="https://img.icons8.com/ios-filled/50/ffffff/asteroid.png" style="left: 30%;" />
+    <img class="floating-icon" src="https://img.icons8.com/ios-filled/50/ffffff/cloud.png" style="left: 60%;" />
+    <span class="commission">Commission ₦6.80</span>
+    <h2>₦0.00 <img src="https://img.icons8.com/ios-filled/20/ffffff/visible.png"/></h2>
+    <p>Account number: 6650027588 <img src="https://img.icons8.com/ios/14/ffffff/copy.png"/></p>
+    <p>Bank name: Palmpay</p>
+    <p>Account name: Israel Dev</p>
+  </div>
+
+  <div class="balance-buttons">
+    <button>Add money</button>
+    <button>Transfer</button>
+  </div>
+
+  <div class="quick-access">
+    <h3>Quick Access</h3>
+    <div class="quick-grid">
+      <div>Buy Data</div>
+      <div>Buy Airtime</div>
+      <div>Airtime-cash</div>
+      <div>Cable TV</div>
+      <div>Electricity</div>
+      <div>Jamb Pin</div>
+      <div>Waec Pin</div>
+      <div>Waec Reg.</div>
+      <div>Bulk SMS</div>
+      <div>Join Betterlife</div>
+      <div>Loans</div>
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <div>Home</div>
+    <div>Savings</div>
+    <div>Transactions</div>
+    <div>Support</div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+  </html>
